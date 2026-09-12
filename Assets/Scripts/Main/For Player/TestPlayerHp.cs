@@ -35,12 +35,18 @@ public class TestPlayerHp : MonoBehaviour
             Hp -= 1;
         }
     }
-    //*Ç©Ç¢Ç”Ç≠ Ç∑ÇÈ
+    /// <summary>
+    /// *Ç©Ç¢Ç”Ç≠ Ç∑ÇÈ
+    /// </summary>
+    /// <param name="amount">*Ç©Ç¢Ç”Ç≠ ÇËÇÂÇ§</param>
     public void Heal(int amount)
     {
         Hp = Mathf.Min(Hp + amount, MaxHp);
     }
-    //*Ç≥Ç¢ÇæÇ¢HPÇ™ Ç”Ç¶ÇÈ(ÇªÇÃÇ‘ÇÒÇ©Ç¢Ç”Ç≠Ç‡ Ç∑ÇÈÇÊÅI)
+    /// <summary>
+    /// *Ç≥Ç¢ÇæÇ¢HPÇ™ Ç”Ç¶ÇÈ(ÇªÇÃÇ‘ÇÒÇ©Ç¢Ç”Ç≠Ç‡ Ç∑ÇÈÇÊÅI)
+    /// </summary>
+    /// <param name="amount">*Ç”Ç¶ÇÈ ÇËÇÂÇ§</param>
     public void IncreaseMaxHp(int amount)
     {
         MaxHp += amount;

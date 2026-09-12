@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4414596270842020633}
   - component: {fileID: 3756167728433937804}
   - component: {fileID: 7485022569784156393}
+  - component: {fileID: 1618832011164445937}
   - component: {fileID: 4731223505723963601}
   m_Layer: 0
   m_Name: Player(Test)
@@ -191,6 +192,21 @@ MonoBehaviour:
   fireInterval: 1
   searchRange: 20
   enemyTag: Enemy
+--- !u!114 &1618832011164445937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9136924197691472587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fbb2972e61fb8a4da11c44257a444b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerEXP
+  level: 1
+  currentExp: 0
+  requiredExp: 100000
 --- !u!54 &4731223505723963601
 Rigidbody:
   m_ObjectHideFlags: 0
