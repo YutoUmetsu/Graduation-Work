@@ -3,8 +3,11 @@ using UnityEngine;
 public class TestPlayerHp : MonoBehaviour
 {
 
-    int Hp;
-    int MaxHp = 10;
+    [SerializeField] private int Hp;
+    [SerializeField] private int MaxHp = 10000;
+
+    public int CurrentHp => Hp;
+    public int MaxHP => MaxHp;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,5 +34,16 @@ public class TestPlayerHp : MonoBehaviour
         {
             Hp -= 1;
         }
+    }
+    //*Ç©Ç¢Ç”Ç≠ Ç∑ÇÈ
+    public void Heal(int amount)
+    {
+        Hp = Mathf.Min(Hp + amount, MaxHp);
+    }
+    //*Ç≥Ç¢ÇæÇ¢HPÇ™ Ç”Ç¶ÇÈ(ÇªÇÃÇ‘ÇÒÇ©Ç¢Ç”Ç≠Ç‡ Ç∑ÇÈÇÊÅI)
+    public void IncreaseMaxHp(int amount)
+    {
+        MaxHp += amount;
+        Hp += amount;
     }
 }
