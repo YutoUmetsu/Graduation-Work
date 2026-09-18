@@ -52,4 +52,13 @@ public class TestPlayerHp : MonoBehaviour
         MaxHp += amount;
         Hp += amount;
     }
+    /// <summary>
+    /// *Ç»Ç©Ç‹ÇÃHPÇ‘ÇÒ Ç≥Ç¢ÇæÇ¢HPÇ™ Ç”Ç¶ÇÈ(ÇªÇÃÇ‘ÇÒÇ©Ç¢Ç”Ç≠Ç‡ Ç∑ÇÈÇÊÅI)
+    /// </summary>
+    /// <param name="amount">*Ç»Ç©Ç‹ÇÃHP
+    public void AddAllyHp(int amount)
+    {
+        MaxHp += amount;
+        Hp += amount;
+    }
 }
