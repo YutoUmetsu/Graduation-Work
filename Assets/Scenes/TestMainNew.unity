@@ -219,7 +219,7 @@ PrefabInstance:
     - target: {fileID: 313915075026728230, guid: 41065cc19e0f7a14d804f09cb629a1f2, type: 3}
       propertyPath: playerEXP
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 906430035}
     - target: {fileID: 866966921121573244, guid: 41065cc19e0f7a14d804f09cb629a1f2, type: 3}
       propertyPath: m_Name
       value: Level UI
@@ -419,7 +419,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -474,6 +474,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5969116834022396537, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
   m_PrefabInstance: {fileID: 8557614091931393643}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &616295240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616295222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c755b36d3ba93d47b03700ecc830521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerBuffStatus
+  hpLevel: 0
+  attackPowerLevel: 0
+  moveSpeedLevel: 0
+  attackSpeedLevel: 0
+  specialCooldownLevel: 0
+  expLevel: 0
+  autoRecoveryLevel: 0
 --- !u!1001 &899162938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -569,7 +588,7 @@ PrefabInstance:
     - target: {fileID: 5238673291947473122, guid: 3a9a11c1c1e802f40bf2449f3531f8ef, type: 3}
       propertyPath: playerHp
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 906430036}
     - target: {fileID: 5569701311766665817, guid: 3a9a11c1c1e802f40bf2449f3531f8ef, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -579,6 +598,40 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a9a11c1c1e802f40bf2449f3531f8ef, type: 3}
+--- !u!1 &906430032 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6729521701689929471, guid: 8d35f499bc858ce44bef1a680085ef0b, type: 3}
+  m_PrefabInstance: {fileID: 2448616692315287714}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &906430035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906430032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fbb2972e61fb8a4da11c44257a444b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerEXP
+  level: 1
+  currentExp: 0
+  requiredExp: 100000
+--- !u!114 &906430036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906430032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351a69108f31dad4db103f1815976454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TestPlayerHp
+  Hp: 0
+  MaxHp: 10000
 --- !u!1 &1413240024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,7 +1189,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6729521701689929471, guid: 8d35f499bc858ce44bef1a680085ef0b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 906430036}
+    - targetCorrespondingSourceObject: {fileID: 6729521701689929471, guid: 8d35f499bc858ce44bef1a680085ef0b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 906430035}
   m_SourcePrefab: {fileID: 100100000, guid: 8d35f499bc858ce44bef1a680085ef0b, type: 3}
 --- !u!1001 &8557614091931393643
 PrefabInstance:
@@ -1201,7 +1260,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6301657067853714127, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 616295240}
   m_SourcePrefab: {fileID: 100100000, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

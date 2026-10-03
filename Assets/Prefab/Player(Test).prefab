@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 7485022569784156393}
   - component: {fileID: 1618832011164445937}
   - component: {fileID: 4731223505723963601}
+  - component: {fileID: 6256405856296427065}
   m_Layer: 0
   m_Name: Player(Test)
   m_TagString: Player
@@ -347,3 +348,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &6256405856296427065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9136924197691472587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c755b36d3ba93d47b03700ecc830521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerBuffStatus
+  hpLevel: 0
+  attackPowerLevel: 0
+  moveSpeedLevel: 0
+  attackSpeedLevel: 0
+  specialCooldownLevel: 0
+  expLevel: 0
+  autoRecoveryLevel: 0
