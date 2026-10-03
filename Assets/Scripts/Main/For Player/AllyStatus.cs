@@ -22,6 +22,10 @@ public class AllyStatus : MonoBehaviour
     [Header("必殺技")]
     [SerializeField] private GameObject specialAttackPrefab;
 
+    // 元のステータス
+    private int baseAttackPower;
+    private float baseMoveSpeed;
+
     // 必殺技のクールタイムは10秒固定
     private const float specialAttackCooldown = 10.0f;
 
@@ -41,8 +45,34 @@ public class AllyStatus : MonoBehaviour
     public GameObject SpecialAttackPrefab => specialAttackPrefab;
     public float SpecialAttackCooldown => specialAttackCooldown;
 
-    // 必殺技中かどうか
     public bool IsUsingSpecial => isUsingSpecial;
+
+    private void Awake()
+    {
+        // バフ適用前の値を保存
+        baseAttackPower = attackPower;
+        baseMoveSpeed = moveSpeed;
+    }
+
+    /// <summary>
+    /// *こうげきりょくを ばいりつで へんこう
+    /// </summary>
+    /// <param name="multiplier">ばいりつ</param>
+    public void ApplyAttackPowerMultiplier(float multiplier)
+    {
+        attackPower =
+            Mathf.RoundToInt(baseAttackPower * multiplier);
+    }
+
+    /// <summary>
+    /// *いどうそくどを ばいりつで へんこう
+    /// </summary>
+    /// <param name="multiplier">ばいりつ</param>
+    public void ApplyMoveSpeedMultiplier(float multiplier)
+    {
+        moveSpeed =
+            baseMoveSpeed * multiplier;
+    }
 
     /// <summary>
     /// *必殺技を はじめる
@@ -70,30 +100,12 @@ public class AllyStatus : MonoBehaviour
     }
 
     /// <summary>
-    /// *こうげきりょくを あとからふやす
-    /// </summary>
-    /// <param name="amount">ふえる すうち</param>
-    public void IncreaseAttackPower(int amount)
-    {
-        attackPower += amount;
-    }
-
-    /// <summary>
-    /// *いどうそくどを あとからふやす
-    /// </summary>
-    /// <param name="amount">ふえる すうち</param>
-    public void IncreaseMoveSpeed(float amount)
-    {
-        moveSpeed += amount;
-    }
-
-    /// <summary>
     /// *こうげき１の クールダウンを あとからへらす
     /// </summary>
     /// <param name="amount">へらす すうち</param>
     public void ReduceAttack1Cooldown(float amount)
     {
-        attack1Cooldown = Mathf.Max(0f, attack1Cooldown - amount);
+        attack1Cooldown = Mathf.Max(0.5f, attack1Cooldown - amount);
     }
 
     /// <summary>
@@ -102,6 +114,6 @@ public class AllyStatus : MonoBehaviour
     /// <param name="amount">へらす すうち</param>
     public void ReduceAttack2Cooldown(float amount)
     {
-        attack2Cooldown = Mathf.Max(0f, attack2Cooldown - amount);
+        attack2Cooldown = Mathf.Max(0.5f, attack2Cooldown - amount);
     }
 }
