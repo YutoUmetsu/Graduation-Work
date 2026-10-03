@@ -19,6 +19,15 @@ public class AllyStatus : MonoBehaviour
     [SerializeField] private GameObject attack2Prefab;
     [SerializeField] private float attack2Cooldown = 3.0f;
 
+    [Header("必殺技")]
+    [SerializeField] private GameObject specialAttackPrefab;
+
+    // 必殺技のクールタイムは10秒固定
+    private const float specialAttackCooldown = 10.0f;
+
+    // 必殺技中かどうか
+    private bool isUsingSpecial = false;
+
     public int Hp => hp;
     public int AttackPower => attackPower;
     public float MoveSpeed => moveSpeed;
@@ -28,6 +37,28 @@ public class AllyStatus : MonoBehaviour
 
     public GameObject Attack1Prefab => attack1Prefab;
     public GameObject Attack2Prefab => attack2Prefab;
+
+    public GameObject SpecialAttackPrefab => specialAttackPrefab;
+    public float SpecialAttackCooldown => specialAttackCooldown;
+
+    // 必殺技中かどうか
+    public bool IsUsingSpecial => isUsingSpecial;
+
+    /// <summary>
+    /// *必殺技を はじめる
+    /// </summary>
+    public void StartSpecial()
+    {
+        isUsingSpecial = true;
+    }
+
+    /// <summary>
+    /// *必殺技を おわる
+    /// </summary>
+    public void EndSpecial()
+    {
+        isUsingSpecial = false;
+    }
 
     /// <summary>
     /// *さいだいHPを あとからふやす
@@ -59,7 +90,7 @@ public class AllyStatus : MonoBehaviour
     /// <summary>
     /// *こうげき１の クールダウンを あとからへらす
     /// </summary>
-    /// <param name="amount">ふえる すうち</param>
+    /// <param name="amount">へらす すうち</param>
     public void ReduceAttack1Cooldown(float amount)
     {
         attack1Cooldown = Mathf.Max(0f, attack1Cooldown - amount);
@@ -68,7 +99,7 @@ public class AllyStatus : MonoBehaviour
     /// <summary>
     /// *こうげき2の クールダウンを あとからへらす
     /// </summary>
-    /// <param name="amount">ふえる すうち</param>
+    /// <param name="amount">へらす すうち</param>
     public void ReduceAttack2Cooldown(float amount)
     {
         attack2Cooldown = Mathf.Max(0f, attack2Cooldown - amount);

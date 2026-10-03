@@ -1,95 +1,53 @@
 using UnityEngine;
 
-public class AllySingleAttack : MonoBehaviour
+public class AllySingleSpecial : MonoBehaviour
 {
     [Header("発射地点")]
     [SerializeField] private Transform firePoint;
-
-    [Header("攻撃設定")]
-    [SerializeField] private bool useAttack1 = true;
-    [SerializeField] private bool useAttack2 = true;
 
     [Header("敵の設定")]
     [SerializeField] private string enemyTag = "Enemy";
     [SerializeField] private float searchRange = 20f;
 
     private AllyStatus allyStatus;
-
-    private float attack1Timer;
-    private float attack2Timer;
+    private AllySpecialGauge specialGauge;
 
     private void Start()
     {
         allyStatus = GetComponent<AllyStatus>();
+
+        // シーンに1つだけある共通ゲージを取得
+        specialGauge = FindFirstObjectByType<AllySpecialGauge>();
     }
 
     private void Update()
     {
-        if (allyStatus == null)
+        if (allyStatus == null || specialGauge == null)
             return;
 
-        if (useAttack1)
+        // Xキーで必殺技を発動
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            Attack1();
-        }
-
-        if (useAttack2)
-        {
-            Attack2();
+            UseSpecial();
         }
     }
 
     /// <summary>
-    /// *1つめの こうげきしょり
+    /// *ひっさつわざを つかう
     /// </summary>
-    private void Attack1()
+    private void UseSpecial()
     {
-        attack1Timer += Time.deltaTime;
-
-        // 必殺技中は発射しない
-        if (allyStatus.IsUsingSpecial)
+        // ゲージMAXかつクールタイム終了でなければ発動しない
+        if (!specialGauge.CanUseSpecial())
             return;
 
-        if (attack1Timer < allyStatus.Attack1Cooldown)
-            return;
-
-        Shoot(allyStatus.Attack1Prefab);
-
-        attack1Timer = 0f;
-    }
-
-    /// <summary>
-    /// *2つめの こうげきしょり
-    /// </summary>
-    private void Attack2()
-    {
-        attack2Timer += Time.deltaTime;
-
-        // 必殺技中は発射しない
-        if (allyStatus.IsUsingSpecial)
-            return;
-
-        if (attack2Timer < allyStatus.Attack2Cooldown)
-            return;
-
-        Shoot(allyStatus.Attack2Prefab);
-
-        attack2Timer = 0f;
-    }
-
-    /// <summary>
-    /// *うつ しょり
-    /// </summary>
-    /// <param name="attackPrefab"></param>
-    private void Shoot(GameObject attackPrefab)
-    {
-        if (attackPrefab == null || firePoint == null)
+        if (allyStatus.SpecialAttackPrefab == null || firePoint == null)
             return;
 
         GameObject nearestEnemy = FindNearestEnemy();
 
         if (nearestEnemy == null)
-            return; //*ちかくにてきがいないなら しない
+            return;
 
         Vector3 direction =
             nearestEnemy.transform.position - firePoint.position;
@@ -97,12 +55,18 @@ public class AllySingleAttack : MonoBehaviour
         Quaternion rotation =
             Quaternion.LookRotation(direction);
 
-        //*たまを つくる
+        // 必殺技中にする
+        allyStatus.StartSpecial();
+
+        // 必殺技Prefabを生成
         Instantiate(
-            attackPrefab,
+            allyStatus.SpecialAttackPrefab,
             firePoint.position,
             rotation
         );
+
+        // 共通ゲージをリセット
+        specialGauge.ResetGauge();
     }
 
     /// <summary>

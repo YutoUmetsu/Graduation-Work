@@ -38,12 +38,17 @@ public class AllyAreaAttack : MonoBehaviour
             Attack2();
         }
     }
+
     /// <summary>
     /// *1‚Â‚ß‚Ì ‚±‚¤‚°‚«‚µ‚å‚è
     /// </summary>
     private void Attack1()
     {
         attack1Timer += Time.deltaTime;
+
+        // •KŽE‹Z’†‚Í”­ŽË‚µ‚È‚¢
+        if (allyStatus.IsUsingSpecial)
+            return;
 
         if (attack1Timer < allyStatus.Attack1Cooldown)
             return;
@@ -52,12 +57,17 @@ public class AllyAreaAttack : MonoBehaviour
 
         attack1Timer = 0f;
     }
+
     /// <summary>
     /// *2‚Â‚ß‚Ì ‚±‚¤‚°‚«‚µ‚å‚è
     /// </summary>
     private void Attack2()
     {
         attack2Timer += Time.deltaTime;
+
+        // •KŽE‹Z’†‚Í”­ŽË‚µ‚È‚¢
+        if (allyStatus.IsUsingSpecial)
+            return;
 
         if (attack2Timer < allyStatus.Attack2Cooldown)
             return;
@@ -66,6 +76,7 @@ public class AllyAreaAttack : MonoBehaviour
 
         attack2Timer = 0f;
     }
+
     /// <summary>
     /// *‚¤‚Â ‚µ‚å‚è
     /// </summary>
@@ -76,7 +87,7 @@ public class AllyAreaAttack : MonoBehaviour
             return;
 
         if (!IsEnemyInRange())
-            return;//*‚¿‚©‚­‚É‚Ä‚«‚ª‚¢‚È‚¢‚È‚ç ‚µ‚È‚¢
+            return; //*‚¿‚©‚­‚É‚Ä‚«‚ª‚¢‚È‚¢‚È‚ç ‚µ‚È‚¢
 
         //*‚½‚Ü‚ð ‚Â‚­‚é
         Instantiate(
@@ -85,6 +96,7 @@ public class AllyAreaAttack : MonoBehaviour
             Quaternion.identity
         );
     }
+
     /// <summary>
     /// *‚¿‚©‚­‚Ì‚Ä‚«‚ð ‚³‚ª‚· ‚Í‚ñ‚¢
     /// </summary>
