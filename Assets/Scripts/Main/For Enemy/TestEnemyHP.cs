@@ -20,6 +20,7 @@ public class TestEnemyHP : MonoBehaviour
     {
         if (hp <= 0)
         {
+            Debug.Log($"[Enemy] 敵が撃破されました！");
             Destroy(this.gameObject);
         }
     }
@@ -28,17 +29,7 @@ public class TestEnemyHP : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            // 共通の汎用ダメージコンポーネントからダメージを取得する
-            ProjectileDamage projectile = collision.gameObject.GetComponent<ProjectileDamage>();
-            if (projectile != null)
-            {
-                hp -= projectile.GetDamage();
-            }
-            else
-            {
-                // コンポーネントがついていない場合はフォールバックとして5ダメージ
-                hp -= 5;
-            }
+            ProcessHit(collision.gameObject);
         }
     }
 
@@ -46,15 +37,34 @@ public class TestEnemyHP : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
-            ProjectileDamage projectile = other.GetComponent<ProjectileDamage>();
-            if (projectile != null)
+            ProcessHit(other.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// 弾が当たったときの共通ダメージ処理
+    /// </summary>
+    private void ProcessHit(GameObject bulletObject)
+    {
+        ProjectileDamage projectile = bulletObject.GetComponent<ProjectileDamage>();
+        int damage = 0;
+
+        if (projectile != null)
+        {
+            // まだこの弾からダメージを受けていない場合のみ処理する（1ヒット固定）
+            if (projectile.CanDamage(this.gameObject))
             {
-                hp -= projectile.GetDamage();
+                damage = projectile.GetDamage();
+                hp -= damage;
+                Debug.Log($"[Hit - Component] 弾から {damage} のダメージを受けました！ 残りHP: {hp}");
             }
-            else
-            {
-                hp -= 5;
-            }
+        }
+        else
+        {
+            // コンポーネントがついていない場合のフォールバック
+            damage = 5;
+            hp -= damage;
+            Debug.Log($"[Hit - Fallback] コンポーネントなしのためフォールバックの {damage} ダメージを受けました！ 残りHP: {hp}");
         }
     }
 }
