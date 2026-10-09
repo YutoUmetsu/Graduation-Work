@@ -2,34 +2,59 @@ using UnityEngine;
 
 public class TestEnemyHP : MonoBehaviour
 {
+    [Header("HP設定")]
+    [SerializeField] private int maxHp = 10;
+    private int hp;
 
-    int Hp;
-    int MaxHp = 10;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Hp = MaxHp;
+        hp = maxHp;
     }
 
-    // Update is called once per frame
     void Update()
     {
         HpCheck();
     }
 
-    void HpCheck() 
+    void HpCheck()
     {
-        if (Hp <= 0) 
+        if (hp <= 0)
         {
             Destroy(this.gameObject);
         }
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Hp -= 5;
+            // 共通の汎用ダメージコンポーネントからダメージを取得する
+            ProjectileDamage projectile = collision.gameObject.GetComponent<ProjectileDamage>();
+            if (projectile != null)
+            {
+                hp -= projectile.GetDamage();
+            }
+            else
+            {
+                // コンポーネントがついていない場合はフォールバックとして5ダメージ
+                hp -= 5;
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            ProjectileDamage projectile = other.GetComponent<ProjectileDamage>();
+            if (projectile != null)
+            {
+                hp -= projectile.GetDamage();
+            }
+            else
+            {
+                hp -= 5;
+            }
         }
     }
 }
