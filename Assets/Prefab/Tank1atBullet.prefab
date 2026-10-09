@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8769757958269782863}
   - component: {fileID: 2366006822098249446}
   - component: {fileID: 2106656765229916401}
+  - component: {fileID: -5447486379417980720}
   m_Layer: 0
   m_Name: Tank1atBullet
   m_TagString: Bullet
@@ -126,7 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd0c7b8cdacc8e418eda9bf2eb6e738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tank1stBullet
-  speed: 10
 --- !u!54 &2106656765229916401
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -154,3 +154,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &-5447486379417980720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8532406257838894216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8cc8c1e4462ea4fa8feb300b6769da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileDamage
+  damageMultiplier: 2
+  useLevelScaling: 1
