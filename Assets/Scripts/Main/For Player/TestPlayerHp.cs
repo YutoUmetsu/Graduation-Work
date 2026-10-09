@@ -34,14 +34,21 @@ public class TestPlayerHp : MonoBehaviour
         if (Hp <= 0)
         {
             Destroy(gameObject);
+            Debug.Log("プレイヤーが倒れた！");
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    // 外部のスクリプトから呼び出すダメージ処理
+    public void TakeDamage(int Edamage)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        Hp -= Edamage;
+
+        Debug.Log("受けたダメージ：" + Edamage);
+        Debug.Log("残りHP：" + Hp);
+
+        if (Hp <= 0)
         {
-            Hp -= 1;
+            Hp = 0;
         }
     }
 
