@@ -1,42 +1,41 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ProjectileDamage : MonoBehaviour
 {
-    [Header("ダメージ倍率 (例: 5 * X なら 5)")]
-    [SerializeField] private int damageMultiplier = 5;
+    [Header("ダメージ倍率 (ダメージ = 2 * X)")]
+    [SerializeField] private int damageMultiplier = 2;
 
-    [Header("レベル依存にするかどうか")]
-    [SerializeField] private bool useLevelScaling = true;
+    // すでにダメージを与えた敵を記憶するセット（1ヒット固定用）
+    private HashSet<GameObject> hitTargets = new HashSet<GameObject>();
 
-    private int finalDamage;
-
-    void Start()
-    {
-        if (useLevelScaling)
-        {
-            // プレイヤーのレベル（X）を取得して計算
-            int currentLevel = 1;
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
-            {
-                PlayerEXP playerEXP = player.GetComponent<PlayerEXP>();
-                if (playerEXP != null)
-                {
-                    currentLevel = playerEXP.Level;
-                }
-            }
-            finalDamage = damageMultiplier * currentLevel;
-        }
-        else
-        {
-            // レベルに依存しない固定ダメージの場合
-            finalDamage = damageMultiplier;
-        }
-    }
-
-    // 敵がこのメソッドを呼んでダメージを受け取る
+    /// <summary>
+    /// ダメージ計算を行う（2 * プレイヤーのレベルX）
+    /// </summary>
     public int GetDamage()
     {
-        return finalDamage;
+        int playerLevel = 1; // デフォルト値（プレイヤーが見つからない場合）
+
+        // シーン内から PlayerEXP を自動で取得し、レベルプロパティを参照する
+        PlayerEXP playerEXP = Object.FindFirstObjectByType<PlayerEXP>();
+        if (playerEXP != null)
+        {
+            playerLevel = playerEXP.Level;
+        }
+
+        return damageMultiplier * playerLevel;
+    }
+
+    /// <summary>
+    /// この弾からまだダメージを受けていないターゲットか判定する
+    /// </summary>
+    public bool CanDamage(GameObject target)
+    {
+        if (!hitTargets.Contains(target))
+        {
+            hitTargets.Add(target);
+            return true;
+        }
+        return false;
     }
 }
