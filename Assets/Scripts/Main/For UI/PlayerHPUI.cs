@@ -4,7 +4,7 @@ using TMPro;
 
 public class PlayerHPUI : MonoBehaviour
 {
-    [SerializeField] private TestPlayerHp playerHp;
+    [SerializeField] private PlayerHp playerHp;
     [SerializeField] private Slider hpSlider;
     [SerializeField] private TMP_Text hpText;
 

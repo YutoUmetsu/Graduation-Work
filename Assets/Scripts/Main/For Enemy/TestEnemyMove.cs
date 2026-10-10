@@ -46,8 +46,8 @@ public class TestEnemyMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // プレイヤーのHPスクリプトを取得
-            TestPlayerHp playerHP =
-                collision.gameObject.GetComponent<TestPlayerHp>();
+            PlayerHp playerHP =
+                collision.gameObject.GetComponent<PlayerHp>();
 
             // HPスクリプトが存在する場合だけダメージを与える
             if (playerHP != null)
