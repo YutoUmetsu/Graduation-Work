@@ -64,7 +64,7 @@ public class Enemy_02 : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerHp>().TakeDamage(AttackPow,gameObject);
+            other.gameObject.GetComponent<PlayerHp>().TakeDamage(AttackPow,gameObject);
             //Player‚É“Å‚ð—^‚¦‚éˆ—
         }
     }
