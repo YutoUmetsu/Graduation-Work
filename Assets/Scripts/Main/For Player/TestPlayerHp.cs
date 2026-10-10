@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TestPlayerHp : MonoBehaviour
+public class PlayerHp : MonoBehaviour
 {
     [SerializeField] private int Hp;
     [SerializeField] private int MaxHp = 100;
