@@ -60,13 +60,14 @@ public class Enemy_02 : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerHp>().TakeDamage(AttackPow);
+            other.gameObject.GetComponent<PlayerHp>().TakeDamage(AttackPow);
             //Player‚É“Å‚ğ—^‚¦‚éˆ—
         }
     }
+        
 
 }
