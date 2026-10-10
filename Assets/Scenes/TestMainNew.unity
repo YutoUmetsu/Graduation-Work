@@ -728,7 +728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38fd7bf4b099d643af12cdee13cb649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trick1stShot
-  damage: 20
   bulletPrefab: {fileID: 8532406257838894216, guid: c135b4c755aea914ea5c9a2d21d74a3d, type: 3}
   firePoint: {fileID: 1786766571}
 --- !u!1 &1920949453
