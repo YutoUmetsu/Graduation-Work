@@ -1,3 +1,5 @@
+using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerHp : MonoBehaviour
@@ -17,6 +19,8 @@ public class PlayerHp : MonoBehaviour
     public int CurrentHp => Hp;
     public int MaxHP => MaxHp;
     public int CurrentShield => currentShield; // UI表示用など
+
+    public event Action<int, GameObject> Damaged;
 
     private void Start()
     {
@@ -61,7 +65,7 @@ public class PlayerHp : MonoBehaviour
     }
 
     // 外部のスクリプトから呼び出すダメージ処理（シールド優先消費）
-    public void TakeDamage(int Edamage)
+    public void TakeDamage(int Edamage, GameObject attacker)
     {
         int remainingDamage = Edamage;
 
@@ -89,6 +93,9 @@ public class PlayerHp : MonoBehaviour
 
         Debug.Log("受けたダメージ：" + Edamage + $" (HP直接減算: {remainingDamage})");
         Debug.Log("残りHP：" + Hp);
+
+        // HPを減らした後、反撃スクリプトなどに通知
+        Damaged?.Invoke(Edamage, attacker);
 
         if (Hp <= 0)
         {
