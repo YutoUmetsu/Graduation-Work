@@ -19,7 +19,7 @@ public class Enemy_03Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerHp>().TakeDamage(AttackPow);
+            other.gameObject.GetComponent<PlayerHp>().TakeDamage(AttackPow,gameObject);
             //Player‚É“Å‚ğ—^‚¦‚éˆ—
         }
     }
