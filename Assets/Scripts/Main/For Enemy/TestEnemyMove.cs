@@ -52,7 +52,7 @@ public class TestEnemyMove : MonoBehaviour
             // HPスクリプトが存在する場合だけダメージを与える
             if (playerHP != null)
             {
-                playerHP.TakeDamage(Edamage);
+                playerHP.TakeDamage(Edamage,gameObject);
             }
         }
     }
