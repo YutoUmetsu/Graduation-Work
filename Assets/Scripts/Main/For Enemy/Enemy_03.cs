@@ -4,6 +4,9 @@ public class Enemy_03 : MonoBehaviour
 {
     PlayerHp player;
 
+
+    private float StanTime;
+
     [SerializeField]
     private GameObject Bullet;
 
@@ -62,6 +65,11 @@ public class Enemy_03 : MonoBehaviour
             collision.gameObject.GetComponent<PlayerHp>().TakeDamage(AttackPow,gameObject);
             //Player‚É“Å‚ğ—^‚¦‚éˆ—
         }
+    }
+
+    public void EnemyStan(float num)
+    {
+        StanTime = num;
     }
 
 }
