@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5714864129704869373}
+  - component: {fileID: 3129535221660482007}
   m_Layer: 0
   m_Name: Tentacl
   m_TagString: Untagged
@@ -33,6 +34,21 @@ Transform:
   - {fileID: 4342108029018226551}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3129535221660482007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61866378516861372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c707f69cf3ea2ac4583a1d4c9e35ccec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tentacle
+  AttackTime: 2
+  AttackPow: 220
+  AttackObject: {fileID: 7526151487714601508}
 --- !u!1 &5193346339300734800
 GameObject:
   m_ObjectHideFlags: 0
