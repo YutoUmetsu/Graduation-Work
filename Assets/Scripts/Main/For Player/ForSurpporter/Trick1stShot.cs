@@ -8,47 +8,31 @@ public class Trick1stShot : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePoint;
 
-    private PlayerHp playerHP;
+    bool cooltimeUp;
 
-    bool cooltimeUp = true;
-    private void Awake()
+    public PlayerHp playerHP;
+
+    private void Start()
     {
-        playerHP = GetComponent<PlayerHp>();
-    }
-
-    private void OnEnable()
-    {
-        if (playerHP == null)
-            playerHP = GetComponent<PlayerHp>();
-
-        if (playerHP != null)
-        {
-            playerHP.Damaged += OnDamaged;
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (playerHP != null)
-        {
-            playerHP.Damaged -= OnDamaged;
-        }
+        cooltimeUp = true;   
     }
 
     // プレイヤーがダメージを受けたときに呼ばれる
-    private void OnDamaged(int receivedDamage, GameObject attacker)
+    public void OnDamaged(GameObject attacker)
     {
-        if (cooltimeUp)
+        if (cooltimeUp == true)
         {
+            //ここにスタンのプログラムを入れる
             // 弾を生成
             Instantiate(
                 bulletPrefab,
                 firePoint.position,
                 Quaternion.identity
-            );
+            );       
+            cooltimeUp = false;
+            StartCoroutine(CountCooltime());
         }
-        cooltimeUp = false;
-        StartCoroutine(CountCooltime());
+ 
     }
 
     IEnumerator CountCooltime()

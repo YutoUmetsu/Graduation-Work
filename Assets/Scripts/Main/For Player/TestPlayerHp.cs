@@ -22,6 +22,8 @@ public class PlayerHp : MonoBehaviour
 
     public event Action<int, GameObject> Damaged;
 
+    public Trick1stShot trick1stShot;
+
     private void Start()
     {
         playerBuffStatus = GetComponent<PlayerBuffStatus>();
@@ -94,8 +96,8 @@ public class PlayerHp : MonoBehaviour
         Debug.Log("受けたダメージ：" + Edamage + $" (HP直接減算: {remainingDamage})");
         Debug.Log("残りHP：" + Hp);
 
-        // HPを減らした後、反撃スクリプトなどに通知
-        Damaged?.Invoke(Edamage, attacker);
+        //反撃用トリガー
+        trick1stShot.OnDamaged(attacker);
 
         if (Hp <= 0)
         {
