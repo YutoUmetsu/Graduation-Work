@@ -4,6 +4,8 @@ public class Enemy_02 : MonoBehaviour
 {
     PlayerHp player;
 
+    private float StanTime;
+
     [SerializeField]
     private float AttackChargeTime = 3;
     private float AttackChargeCount = 0;
@@ -34,6 +36,11 @@ public class Enemy_02 : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if(StanTime > 0)
+        {
+            StanTime -= Time.deltaTime;
+            return;
+        }
 
         if (AttackChargeCount < AttackChargeTime)
         {
@@ -65,8 +72,13 @@ public class Enemy_02 : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<PlayerHp>().TakeDamage(AttackPow,gameObject);
-            //Player‚É“Å‚ð—^‚¦‚éˆ—
+            //Playerに毒を付与
         }
+    }
+
+    public void EnemyStan(float num)
+    {
+        StanTime = num;
     }
         
 
