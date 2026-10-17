@@ -493,6 +493,17 @@ MonoBehaviour:
   specialCooldownLevel: 0
   expLevel: 0
   autoRecoveryLevel: 0
+--- !u!114 &616295243 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1901245137277332602, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
+  m_PrefabInstance: {fileID: 8557614091931393643}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616295222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351a69108f31dad4db103f1815976454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TestPlayerHp
 --- !u!1001 &899162938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -632,6 +643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TestPlayerHp
   Hp: 0
   MaxHp: 10000
+  trick1stShot: {fileID: 0}
 --- !u!1 &1413240024
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,6 +742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Trick1stShot
   bulletPrefab: {fileID: 8532406257838894216, guid: c135b4c755aea914ea5c9a2d21d74a3d, type: 3}
   firePoint: {fileID: 1786766571}
+  playerHP: {fileID: 616295243}
 --- !u!1 &1920949453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,9 +1264,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1901245137277332602, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
+      propertyPath: trick1stShot
+      value: 
+      objectReference: {fileID: 1786766572}
     - target: {fileID: 3286184759336156141, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
       propertyPath: searchRange
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5610371974776715881, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5873871810636386359, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
       propertyPath: m_IsActive
