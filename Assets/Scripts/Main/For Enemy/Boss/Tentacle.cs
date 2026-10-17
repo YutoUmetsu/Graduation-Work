@@ -8,6 +8,9 @@ public class Tentacle : MonoBehaviour
     private float AttackCount;
 
     [SerializeField]
+    private int AttackPow;
+
+    [SerializeField]
     private GameObject AttackObject;
 
     void Start()
@@ -21,7 +24,16 @@ public class Tentacle : MonoBehaviour
         AttackCount += Time.deltaTime;
         if (AttackCount > AttackTime)
         {
-            Instantiate(AttackObject, transform.position, Quaternion.identity);
+            AttackObject.SetActive(true);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            //ƒvƒŒƒCƒ„[‚ÌHP‚ÌÅ‘åHP‚ğ‚P‚T“Œ¸­‚³‚¹‚éŒø‰Ê‚ğ‚R‚O•bŠÔ•t—^
+            other.gameObject.GetComponent<PlayerHp>().TakeDamage(AttackPow, gameObject);
         }
     }
 }

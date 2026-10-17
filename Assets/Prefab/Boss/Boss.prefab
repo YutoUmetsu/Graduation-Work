@@ -130,3 +130,4 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5400e23bcb0394a4f9a53c470fce6f62, type: 2}
   - {fileID: 2100000, guid: f7e77a08179c5bc49b22b8276b180271, type: 2}
   Tentacle: {fileID: 0}
+  PatternTime: 4

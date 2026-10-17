@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 public class Boss_01 : MonoBehaviour
 {
@@ -9,10 +10,17 @@ public class Boss_01 : MonoBehaviour
     [SerializeField]
     private GameObject Tentacle;
 
+    [SerializeField]
+    private GameObject Prediction;
+
+    [SerializeField]
+    private GameObject AnchorObject;
+    public bool AnchorReverse;
+
     MeshRenderer Mes;
 
     [SerializeField]
-    private float PatternTime = 2;
+    private float PatternTime = 3;
     private float PatternCount;
 
     void Start()
@@ -29,7 +37,13 @@ public class Boss_01 : MonoBehaviour
         if(PatternCount > PatternTime)
         {
             PatternCount = 0;
-            Tentacle4Attack();
+            StartCoroutine(AnchorShot());
+        }
+        if (AnchorReverse)
+        {
+            AnchorReverse = false;
+           // StartCoroutine(OnAnchorReverse());
+
         }
     }
 
@@ -59,4 +73,27 @@ public class Boss_01 : MonoBehaviour
         Instantiate(Tentacle, player.transform.position + Vector3.left * 2 + Vector3.back * 2, Quaternion.identity);
     }
 
+    IEnumerator AnchorShot()
+    {
+        Prediction.SetActive(true);
+        yield return new WaitForSeconds(2f);
+
+        Prediction.SetActive(false);
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject tmp = Instantiate(AnchorObject, transform.position, transform.rotation * Quaternion.Euler(0, 45 + (90 * i), 0));
+            tmp.transform.parent = transform;
+        }
+        //}
+        //IEnumrator OnAnchorReverse()
+        //{
+        //    float step = 2;
+        //    float count = 0;
+        //    while (count < step) {
+        //        count += Time.deltaTime;
+        //        transform.rotation += Quaternion.Euler(0, 180 * Time.deltaTime, 0));
+        //        yield return null;
+        //    }
+        //}
+    }
 }
