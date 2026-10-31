@@ -39,6 +39,9 @@ public class Boss_01 : MonoBehaviour
     private float PatternTime = 8;
     private float PatternCount;
 
+    [SerializeField]
+    private int PatternIndex = 0;
+
     void Start()
     {
         player = FindObjectOfType<PlayerHp>();
@@ -53,7 +56,19 @@ public class Boss_01 : MonoBehaviour
         if (PatternCount < 0)
         {
             PatternCount = PatternTime;
-            StartCoroutine(RudderShot());
+            switch (PatternIndex)
+            {
+                case 0:
+                    Tentacle4Attack();
+                    break;
+                case 1:
+                        StartCoroutine(AnchorShot());
+                    break;
+                case 2:
+                    StartCoroutine(RudderShot());
+                    break;
+
+            }
         }
     }
 
