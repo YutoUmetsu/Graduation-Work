@@ -19,36 +19,31 @@ public class Anchor : MonoBehaviour
     private bool ReverseStart;
 
     private Vector3 MoveEnd;
-    
+
+    [SerializeField]
+    private int AttackPow;
+    [SerializeField]
+    private int RoteAttackPow;
+
     void Start()
     {
-        MoveEnd = transform.position;
 
         parent = GetComponentInParent<Boss_01>();
+        MoveEnd = Vector3.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (MoveCount < MoveTime)
+        if (!parent.AnchorReverse)
         {
-            MoveCount += Time.deltaTime;
             transform.position += transform.forward * MoveSpeed * Time.deltaTime;
         }
-        else 
+        else if (!ReverseStart)
         {
-            if (!parent.AnchorReverse)
-            {
-                parent.AnchorReverse = true;
-            }
 
-            if (!ReverseStart)
-            {
-                ReverseStart = true;
-                StartCoroutine(Reverse());
-            }
-
-
+            ReverseStart = true;
+            StartCoroutine(Reverse());
         }
     }
 
@@ -61,11 +56,22 @@ public class Anchor : MonoBehaviour
         while(count < step)
         {
             count += Time.deltaTime;
-            transform.position = Vector3.Lerp(StartPos, MoveEnd, count / step);
+            transform.localPosition = Vector3.Lerp(StartPos, MoveEnd, count / step);
             yield return null;
         }
 
         Destroy(gameObject);
 
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (!ReverseStart)
+                other.gameObject.GetComponent<PlayerHp>().TakeDamage(AttackPow, gameObject);
+            else
+                other.gameObject.GetComponent<PlayerHp>().TakeDamage(RoteAttackPow, gameObject);
+          
+        }
     }
 }
