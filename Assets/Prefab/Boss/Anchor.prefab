@@ -48,6 +48,8 @@ MonoBehaviour:
   MoveSpeed: 3
   MoveTime: 5
   ReverseTime: 5
+  AttackPow: 200
+  RoteAttackPow: 100
 --- !u!1 &4641326129235613135
 GameObject:
   m_ObjectHideFlags: 0
