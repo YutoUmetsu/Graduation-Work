@@ -62,9 +62,9 @@ public class AreaStunDamageAction : MonoBehaviour
                 TestEnemyHP enemyHP = col.GetComponent<TestEnemyHP>();
                 if (enemyHP != null)
                 {
-                    // 敵へダメージを与える処理
-                    // ※プロジェクトの敵HP仕様に合わせてメソッドを調整してください
-                    Debug.Log($"[Area Special] 敵に {damage} のダメージ！");
+                    // ★追加：TestEnemyHP側にダメージを直接与える！
+                    enemyHP.TakeDamage(damage);
+                    Debug.Log($"[Area Special] 敵に {damage} のダメージを与えました！");
                 }
             }
         }

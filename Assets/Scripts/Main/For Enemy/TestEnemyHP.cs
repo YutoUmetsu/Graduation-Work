@@ -67,4 +67,13 @@ public class TestEnemyHP : MonoBehaviour
             Debug.Log($"[Hit - Fallback] コンポーネントなしのためフォールバックの {damage} ダメージを受けました！ 残りHP: {hp}");
         }
     }
+
+    /// <summary>
+    /// 外部から直接ダメージを与えるための共通メソッド
+    /// </summary>
+    public void TakeDamage(int damage)
+    {
+        hp -= damage;
+        Debug.Log($"[External Damage] 外部から {damage} のダメージを受けました！ 残りHP: {hp}");
+    }
 }
