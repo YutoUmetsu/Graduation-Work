@@ -49,7 +49,7 @@ public class Anchor : MonoBehaviour
 
     IEnumerator Reverse()
     {
-       Vector3 StartPos =  transform.position;
+       Vector3 StartPos =  transform.localPosition;
 
         float step = 2;
         float count = 0;
