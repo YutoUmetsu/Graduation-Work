@@ -18,10 +18,13 @@ public class Trick2to1Bullet : MonoBehaviour
     private bool isMoving = false;
 
     private GameObject playerPos;
+    private PlayerMove playerMovement;
 
     public void Start()
     {
         playerPos = GameObject.FindGameObjectWithTag("Player");
+        playerMovement = playerPos.GetComponent<PlayerMove>();
+
         StartCoroutine(WaitAndMove());
     }
 
@@ -38,8 +41,24 @@ public class Trick2to1Bullet : MonoBehaviour
 
         if (!isMoving)
         {
-            transform.position = new Vector3(playerPos.transform.position.x + 1,playerPos.transform.position.y,playerPos.transform.position.z);
-            
+            // プレイヤーの移動方向を取得
+            Vector2 direction = playerMovement.MoveDirection;
+
+            if (direction != Vector2.zero)
+            {
+                moveDirection = direction;
+            }
+
+            // X・Z平面の移動方向に変換
+            Vector3 direction3d = new Vector3(
+                moveDirection.x,
+                0,
+                moveDirection.y
+            );
+
+            // プレイヤーの前方1mに配置
+            transform.position = playerPos.transform.position + direction3d.normalized;
+
             return;
         }
             
@@ -54,8 +73,10 @@ public class Trick2to1Bullet : MonoBehaviour
         );
 
         // 移動
+        Vector3 direction3D = new Vector3(moveDirection.x, 0, moveDirection.y);
+
         transform.position +=
-           transform.forward * speed * Time.deltaTime;
+            direction3D.normalized * speed * Time.deltaTime;
 
         movedDistance += moveAmount;
 
