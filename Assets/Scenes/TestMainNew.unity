@@ -145,7 +145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &189781003
 Transform:
   m_ObjectHideFlags: 0
@@ -173,10 +173,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f80dc1e503e7b4c87a9f6d4ff504fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShotTrick2nd
-  bulletPrefab1: {fileID: 0}
+  bulletPrefab1: {fileID: 4753208490416096309, guid: 625c994028590be4497554489862df50, type: 3}
   bulletPrefab2: {fileID: 0}
   bulletPrefab3: {fileID: 0}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 616295231}
   fireInterval: 1
   searchRange: 20
   enemyTag: Enemy
@@ -775,7 +775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1729455188
 Transform:
   m_ObjectHideFlags: 0
@@ -1437,6 +1437,10 @@ PrefabInstance:
       propertyPath: trick1stShot
       value: 
       objectReference: {fileID: 1786766572}
+    - target: {fileID: 2643495441761434979, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 18a94cc4bd081df4f87ef3fd29fe00d6, type: 2}
     - target: {fileID: 3286184759336156141, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
       propertyPath: searchRange
       value: 10

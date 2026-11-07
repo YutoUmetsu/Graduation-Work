@@ -42,7 +42,7 @@ public class ShotTrick2nd : MonoBehaviour
         GameObject[] bulletPrefabs = { bulletPrefab1, bulletPrefab2, bulletPrefab3 };
 
         GameObject selectedBullet =
-            bulletPrefabs[Random.Range(0, bulletPrefabs.Length)];
+            bulletPrefabs[0];//Random.Range(0, bulletPrefabs.Length)];
 
         if (selectedBullet == null)
         {
