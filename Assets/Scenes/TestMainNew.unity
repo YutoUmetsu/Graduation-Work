@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShotTrick2nd
   bulletPrefab1: {fileID: 4753208490416096309, guid: 625c994028590be4497554489862df50, type: 3}
-  bulletPrefab2: {fileID: 0}
+  bulletPrefab2: {fileID: 8604944178492584245, guid: 38dafdb1cbb9cc74f88efcef741289d9, type: 3}
   bulletPrefab3: {fileID: 0}
   firePoint: {fileID: 616295231}
   fireInterval: 1
