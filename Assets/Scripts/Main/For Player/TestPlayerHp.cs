@@ -1,11 +1,14 @@
 using System;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement; // シーン遷移用に必須
 
 public class PlayerHp : MonoBehaviour
 {
     [SerializeField] private int Hp;
     [SerializeField] private int MaxHp = 100;
+
+    [Header("シーン遷移設定")]
+    [SerializeField] private string gameOverSceneName = "GameOver"; // インスペクターで遷移先を指定
 
     // 現在のシールド耐久値
     private int currentShield = 0;
@@ -42,8 +45,17 @@ public class PlayerHp : MonoBehaviour
     {
         if (Hp <= 0)
         {
-            Destroy(gameObject);
-            Debug.Log("プレイヤーが倒れた！");
+            Debug.Log("プレイヤーが倒れた！ゲームオーバー画面へ遷移します。");
+
+            if (!string.IsNullOrEmpty(gameOverSceneName))
+            {
+                SceneManager.LoadScene(gameOverSceneName);
+            }
+            else
+            {
+                Debug.LogWarning("GameOverSceneName が設定されていません！");
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -96,8 +108,11 @@ public class PlayerHp : MonoBehaviour
         Debug.Log("受けたダメージ：" + Edamage + $" (HP直接減算: {remainingDamage})");
         Debug.Log("残りHP：" + Hp);
 
-        //反撃用トリガー
-        trick1stShot.OnDamaged(attacker);
+        // 反撃用トリガー（nullチェックを入れて安全に）
+        if (trick1stShot != null)
+        {
+            trick1stShot.OnDamaged(attacker);
+        }
 
         if (Hp <= 0)
         {

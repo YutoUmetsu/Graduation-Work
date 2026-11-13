@@ -662,7 +662,7 @@ PrefabInstance:
     - target: {fileID: 5238673291947473122, guid: 3a9a11c1c1e802f40bf2449f3531f8ef, type: 3}
       propertyPath: playerHp
       value: 
-      objectReference: {fileID: 906430036}
+      objectReference: {fileID: 616295243}
     - target: {fileID: 5569701311766665817, guid: 3a9a11c1c1e802f40bf2449f3531f8ef, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -706,6 +706,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TestPlayerHp
   Hp: 0
   MaxHp: 10000
+  gameOverSceneName: GameOver
   trick1stShot: {fileID: 0}
 --- !u!1 &1413240024
 GameObject:
@@ -1377,9 +1378,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1901245137277332602, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
+      propertyPath: MaxHp
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901245137277332602, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
       propertyPath: trick1stShot
       value: 
       objectReference: {fileID: 1786766572}
+    - target: {fileID: 1901245137277332602, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
+      propertyPath: gameOverSceneName
+      value: Result
+      objectReference: {fileID: 0}
     - target: {fileID: 2643495441761434979, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
