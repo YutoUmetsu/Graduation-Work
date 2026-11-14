@@ -126,6 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_02
   AttackChargeTime: 3
-  HP: 0
+  HP: 3
   AttackPow: 0
   MoveTime: 1

@@ -127,5 +127,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_03
   Bullet: {fileID: 4752845184587511036, guid: 7d6cbe325244bfd43954bf34975dd104, type: 3}
   AttackChargeTime: 3
-  HP: 0
+  HP: 5
   AttackPow: 1

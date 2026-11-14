@@ -46,22 +46,28 @@ public class MonsterSpawner : MonoBehaviour
         if (player == null || normalMonsterPrefabs.Count == 0)
             return;
 
+        // ★どれが選ばれているかログに出す
+        int index = Random.Range(0, normalMonsterPrefabs.Count);
+        Debug.Log($"【抽選】選ばれたインデックス: {index} (リストの総数: {normalMonsterPrefabs.Count})");
+
+        GameObject prefab = normalMonsterPrefabs[index];
+
+        if (prefab == null)
+        {
+            Debug.LogWarning($"【警告】インデックス {index} のプレハブが null（空っぽ）です！");
+            return;
+        }
+
         Vector2 randomDirection = Random.insideUnitCircle.normalized;
 
         Vector3 spawnPosition = player.position;
         spawnPosition.x += randomDirection.x * spawnDistance;
         spawnPosition.z += randomDirection.y * spawnDistance;
 
-        GameObject prefab = normalMonsterPrefabs[
-            Random.Range(0, normalMonsterPrefabs.Count)
-        ];
-
-        if (prefab == null)
-            return;
-
         Instantiate(prefab, spawnPosition, Quaternion.identity);
 
         normalMonsterCount++;
+        Debug.Log($"【生成成功】「{prefab.name}」をスポーンしました！ (現在の総数: {normalMonsterCount})");
     }
 
     public void SpawnMiddleBoss()
