@@ -12,11 +12,13 @@ public class AllySpecialGauge : MonoBehaviour
 
     [Header("ゲージ設定")]
     [SerializeField] private int maxGauge = 100;
+    [SerializeField] private float chargePerSecond = 10.0f; // 1秒あたりの自動チャージ量
 
     private const float specialCooldown = 10.0f;
 
     private int currentGauge = 0;
     private float cooldownTimer = 0.0f;
+    private float chargeAccumulator = 0.0f; // 小数点以下のチャージ量を蓄積する変数
 
     public int CurrentGauge => currentGauge;
     public int MaxGauge => maxGauge;
@@ -25,6 +27,7 @@ public class AllySpecialGauge : MonoBehaviour
     {
         currentGauge = 0;
         cooldownTimer = 0.0f;
+        chargeAccumulator = 0.0f;
 
         gaugeSlider.minValue = 0;
         gaugeSlider.maxValue = maxGauge;
@@ -35,6 +38,7 @@ public class AllySpecialGauge : MonoBehaviour
 
     private void Update()
     {
+        // クールタイム中の処理
         if (cooldownTimer > 0.0f)
         {
             cooldownTimer -= Time.deltaTime;
@@ -48,9 +52,23 @@ public class AllySpecialGauge : MonoBehaviour
             return;
         }
 
+        // クールタイム終了後、MAXでなければ時間経過で自動チャージ
+        if (!IsMax())
+        {
+            chargeAccumulator += chargePerSecond * Time.deltaTime;
+
+            if (chargeAccumulator >= 1.0f)
+            {
+                int addAmount = Mathf.FloorToInt(chargeAccumulator);
+                IncreaseGauge(addAmount);
+                chargeAccumulator -= addAmount;
+            }
+        }
+
+        // テキスト表示の更新
         if (IsMax())
         {
-            statusText.text = "OK!";
+            statusText.text = "OK!(Push X to SPAct)";
         }
         else
         {
@@ -82,6 +100,7 @@ public class AllySpecialGauge : MonoBehaviour
     public void ResetGauge()
     {
         currentGauge = 0;
+        chargeAccumulator = 0.0f; // 端数もリセット
         gaugeSlider.value = currentGauge;
 
         cooldownTimer = specialCooldown;

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem; // 新Input Systemを使うための名前空間
 
 public class AllyDirectSpecial : MonoBehaviour
 {
@@ -19,8 +20,8 @@ public class AllyDirectSpecial : MonoBehaviour
         if (allyStatus == null || specialGauge == null)
             return;
 
-        // Xキーで必殺技を発動（敵の有無に関わらず実行）
-        if (Input.GetKeyDown(KeyCode.X))
+        // 新Input SystemでXキーが押されたかチェック
+        if (Keyboard.current != null && Keyboard.current.xKey.wasPressedThisFrame)
         {
             UseSpecial();
         }
@@ -35,7 +36,7 @@ public class AllyDirectSpecial : MonoBehaviour
         if (allyStatus.SpecialAttackPrefab == null)
             return;
 
-        // 必殺技状態にする
+        // ★修正: 必殺技状態にする（AllyStatusの正しいメソッド名を指定）
         allyStatus.StartSpecial();
 
         // bool の値によって親（自身）に追従させるか、ワールド座標に独立生成するか切り替え

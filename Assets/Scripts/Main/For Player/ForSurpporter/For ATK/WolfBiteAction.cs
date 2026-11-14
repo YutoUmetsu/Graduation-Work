@@ -17,7 +17,6 @@ public class WolfBiteAction : MonoBehaviour
         transform.SetParent(null);
 
         // シーン内から発動したオオカミ（AllyStatus）を特定して保持する
-        // ※もし複数キャラがいる場合は、一番近くにいる、またはステータスが特殊状態中のキャラを特定します
         targetAllyStatus = Object.FindFirstObjectByType<AllyStatus>();
 
         if (targetAllyStatus != null)
@@ -35,6 +34,17 @@ public class WolfBiteAction : MonoBehaviour
 
     private void ExecuteBiteHit()
     {
+        // プレイヤーのレベル X を取得（PlayerEXPから）
+        int playerLevel = 1;
+        PlayerEXP playerEXP = Object.FindFirstObjectByType<PlayerEXP>();
+        if (playerEXP != null)
+        {
+            playerLevel = playerEXP.Level;
+        }
+
+        // 必殺技のダメージ計算: 10 * X
+        int damage = 10 * playerLevel;
+
         // 後ろ側に展開されるボックスの中心座標
         Vector3 boxCenter = transform.position - (transform.forward * (boxSize.z / 2f));
         Collider[] hitColliders = Physics.OverlapBox(boxCenter, boxSize / 2f, transform.rotation);
@@ -43,20 +53,12 @@ public class WolfBiteAction : MonoBehaviour
         {
             if (col.CompareTag("Enemy"))
             {
-                ProjectileDamage projectileDamage = GetComponent<ProjectileDamage>();
                 TestEnemyHP enemyHP = col.GetComponent<TestEnemyHP>();
-
-                if (enemyHP != null && projectileDamage != null)
+                if (enemyHP != null)
                 {
-                    // 1ヒット固定チェック
-                    if (projectileDamage.CanDamage(col.gameObject))
-                    {
-                        int damage = projectileDamage.GetDamage(); // 10 * X
-
-                        // ※TestEnemyHPへのダメージ適用方法に合わせて記述
-                        // 例としてログを表示
-                        Debug.Log($"[Wolf Special] 敵に {damage} のダメージ！");
-                    }
+                    // ★TestEnemyHPに直接ダメージを与える！
+                    enemyHP.TakeDamage(damage);
+                    Debug.Log($"[Wolf Special] 敵に {damage} のダメージを与えました！");
                 }
             }
         }

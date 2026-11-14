@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem; // 新Input Systemを使うための名前空間
 
 public class AllySingleSpecial : MonoBehaviour
 {
@@ -25,8 +26,8 @@ public class AllySingleSpecial : MonoBehaviour
         if (allyStatus == null || specialGauge == null)
             return;
 
-        // Xキーで必殺技を発動
-        if (Input.GetKeyDown(KeyCode.X))
+        // ★修正: 新Input SystemでXキーが押されたかチェック
+        if (Keyboard.current != null && Keyboard.current.xKey.wasPressedThisFrame)
         {
             UseSpecial();
         }

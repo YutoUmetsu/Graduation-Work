@@ -270,7 +270,7 @@ PrefabInstance:
     - target: {fileID: 313915075026728230, guid: 41065cc19e0f7a14d804f09cb629a1f2, type: 3}
       propertyPath: playerEXP
       value: 
-      objectReference: {fileID: 906430035}
+      objectReference: {fileID: 616295248}
     - target: {fileID: 866966921121573244, guid: 41065cc19e0f7a14d804f09cb629a1f2, type: 3}
       propertyPath: m_Name
       value: Level UI
@@ -555,6 +555,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351a69108f31dad4db103f1815976454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestPlayerHp
+--- !u!114 &616295244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616295222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f1fccaa8460a04b9629b1da1c525e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AllyStatus
+  hp: 10
+  attackPower: 1
+  moveSpeed: 3
+  attack1Prefab: {fileID: 0}
+  attack1Cooldown: 1
+  attack2Prefab: {fileID: 0}
+  attack2Cooldown: 3
+  specialAttackPrefab: {fileID: 3321074815639966609, guid: f3de0a599dcef4c42962050bda467b37, type: 3}
+--- !u!114 &616295245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616295222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a0b7dd6a7ee9f4a9078be455f9e1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AllyDirectSpecial
+  attachToSelf: 1
+--- !u!114 &616295248 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5832055639588905349, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
+  m_PrefabInstance: {fileID: 8557614091931393643}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616295222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fbb2972e61fb8a4da11c44257a444b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerEXP
 --- !u!1001 &899162938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1085,6 +1129,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SP
       objectReference: {fileID: 0}
+    - target: {fileID: 2265911415531061759, guid: 4f2d97f46e9988049a59fde257c8b906, type: 3}
+      propertyPath: chargePerSecond
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4856621892734108869, guid: 4f2d97f46e9988049a59fde257c8b906, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1379,7 +1427,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1901245137277332602, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
       propertyPath: MaxHp
-      value: 3000
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 1901245137277332602, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
       propertyPath: trick1stShot
@@ -1465,6 +1513,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6301657067853714127, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 616295240}
+    - targetCorrespondingSourceObject: {fileID: 6301657067853714127, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 616295245}
+    - targetCorrespondingSourceObject: {fileID: 6301657067853714127, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 616295244}
   m_SourcePrefab: {fileID: 100100000, guid: 25cf50722dfe5cf4ba04b66000523a3f, type: 3}
 --- !u!1001 &8628698070470044010
 PrefabInstance:
