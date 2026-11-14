@@ -784,6 +784,8 @@ MonoBehaviour:
   player: {fileID: 616295231}
   normalMonsterPrefabs:
   - {fileID: 2617814991753333903, guid: 8ea23ffa980f19c4da89e92c67985e92, type: 3}
+  - {fileID: 4584570196867052256, guid: c1843bce02bd07442bde187d2a769062, type: 3}
+  - {fileID: 4391484081251413595, guid: 8983f2bf2ef56a34d820d853c3f0e214, type: 3}
   spawnInterval: 1
   spawnDistance: 17
   middleBossPrefab: {fileID: 0}
